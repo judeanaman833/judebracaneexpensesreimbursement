@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: tracker\views.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="tracker.views.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               tracker\views.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="W191">
+               <span class="count sev-2">
+                  150
+               </span>
+               <strong>W191:</strong> indentation contains tabs
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="tracker.views.source.html#l19">
+                  <tt><i>19</i> 	<span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l20">
+                  <tt><i>20</i> 	<span class="n">expenses</span> <span class="o">=</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l21">
+                  <tt><i>21</i> 	<span class="k">if</span> <span class="ow">not</span> <span class="n">expenses</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l22">
+                  <tt><i>22</i> 		<span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;No expenses to export.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l23">
+                  <tt><i>23</i> 		<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;expense-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l24">
+                  <tt><i>24</i> 	<span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l25">
+                  <tt><i>25</i> 	<span class="n">p</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">letter</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l26">
+                  <tt><i>26</i> 	<span class="n">p</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica-Bold&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l27">
+                  <tt><i>27</i> 	<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="s2">&quot;Expense Report&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l28">
+                  <tt><i>28</i> 	<span class="n">p</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l29">
+                  <tt><i>29</i> 	<span class="n">y</span> <span class="o">=</span> <span class="mi">720</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l30">
+                  <tt><i>30</i> 	<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Date&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l31">
+                  <tt><i>31</i> 	<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l32">
+                  <tt><i>32</i> 	<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Category&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l33">
+                  <tt><i>33</i> 	<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Description&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l34">
+                  <tt><i>34</i> 	<span class="n">y</span> <span class="o">-=</span> <span class="mi">20</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l35">
+                  <tt><i>35</i> 	<span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">expenses</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l36">
+                  <tt><i>36</i> 		<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">exp</span><span class="o">.</span><span class="n">date</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l37">
+                  <tt><i>37</i> 		<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">exp</span><span class="o">.</span><span class="n">amount</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l38">
+                  <tt><i>38</i> 		<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l39">
+                  <tt><i>39</i> 		<span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">description</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l40">
+                  <tt><i>40</i> 		<span class="n">y</span> <span class="o">-=</span> <span class="mi">20</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l41">
+                  <tt><i>41</i> 		<span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l42">
+                  <tt><i>42</i> 			<span class="n">p</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l43">
+                  <tt><i>43</i> 			<span class="n">y</span> <span class="o">=</span> <span class="mi">750</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l44">
+                  <tt><i>44</i> 	<span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l45">
+                  <tt><i>45</i> 	<span class="n">buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l46">
+                  <tt><i>46</i> 	<span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l49">
+                  <tt><i>49</i> 	<span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l50">
+                  <tt><i>50</i> 	<span class="n">expenses</span> <span class="o">=</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l51">
+                  <tt><i>51</i> 	<span class="k">if</span> <span class="ow">not</span> <span class="n">expenses</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l52">
+                  <tt><i>52</i> 		<span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;No expenses to export.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l53">
+                  <tt><i>53</i> 		<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;expense-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l54">
+                  <tt><i>54</i> 	<span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l55">
+                  <tt><i>55</i> 	<span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;attachment; filename=&quot;expenses.csv&quot;&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l56">
+                  <tt><i>56</i> 	<span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l57">
+                  <tt><i>57</i> 	<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Amount&#39;</span><span class="p">,</span> <span class="s1">&#39;Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l58">
+                  <tt><i>58</i> 	<span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">expenses</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l59">
+                  <tt><i>59</i> 		<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">exp</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">description</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l60">
+                  <tt><i>60</i> 	<span class="k">return</span> <span class="n">response</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l63">
+                  <tt><i>63</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l64">
+                  <tt><i>64</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/dashboard.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l65">
+                  <tt><i>65</i> 	<span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;expenses&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l67">
+                  <tt><i>67</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l68">
+                  <tt><i>68</i> 		<span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l69">
+                  <tt><i>69</i> 		<span class="n">today</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l70">
+                  <tt><i>70</i> 		<span class="n">month_start</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l71">
+                  <tt><i>71</i> 		<span class="n">month_end</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="n">monthrange</span><span class="p">(</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l72">
+                  <tt><i>72</i> 		<span class="n">qs</span> <span class="o">=</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">date__range</span><span class="o">=</span><span class="p">[</span><span class="n">month_start</span><span class="p">,</span> <span class="n">month_end</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l73">
+                  <tt><i>73</i> 		<span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l74">
+                  <tt><i>74</i> 		<span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l75">
+                  <tt><i>75</i> 		<span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l76">
+                  <tt><i>76</i> 		<span class="k">if</span> <span class="n">category</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l77">
+                  <tt><i>77</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category__id</span><span class="o">=</span><span class="n">category</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l78">
+                  <tt><i>78</i> 		<span class="k">if</span> <span class="n">start_date</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l79">
+                  <tt><i>79</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">date__gte</span><span class="o">=</span><span class="n">start_date</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l80">
+                  <tt><i>80</i> 		<span class="k">if</span> <span class="n">end_date</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l81">
+                  <tt><i>81</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">date__lte</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l82">
+                  <tt><i>82</i> 		<span class="k">return</span> <span class="n">qs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l83">
+                  <tt><i>83</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l84">
+                  <tt><i>84</i> 	<span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l85">
+                  <tt><i>85</i> 		<span class="n">ctx</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l86">
+                  <tt><i>86</i> 		<span class="n">qs</span> <span class="o">=</span> <span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;expenses&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l87">
+                  <tt><i>87</i> 		<span class="n">summary</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;category__name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-total&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l88">
+                  <tt><i>88</i> 		<span class="n">overall_total</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">))[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l89">
+                  <tt><i>89</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l90">
+                  <tt><i>90</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;overall_total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">overall_total</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l91">
+                  <tt><i>91</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%B %Y&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l92">
+                  <tt><i>92</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l93">
+                  <tt><i>93</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l94">
+                  <tt><i>94</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_start_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_date&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l95">
+                  <tt><i>95</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_end_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l96">
+                  <tt><i>96</i> 		<span class="k">return</span> <span class="n">ctx</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l97">
+                  <tt><i>97</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l99">
+                  <tt><i>99</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Category</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l100">
+                  <tt><i>100</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/category_list.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l101">
+                  <tt><i>101</i> 	<span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;categories&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l103">
+                  <tt><i>103</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l104">
+                  <tt><i>104</i> 		<span class="k">return</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l107">
+                  <tt><i>107</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Category</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l108">
+                  <tt><i>108</i> 	<span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l109">
+                  <tt><i>109</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/category_form.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l110">
+                  <tt><i>110</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;category-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l112">
+                  <tt><i>112</i> 	<span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l113">
+                  <tt><i>113</i> 		<span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l114">
+                  <tt><i>114</i> 		<span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l117">
+                  <tt><i>117</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Category</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l118">
+                  <tt><i>118</i> 	<span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l119">
+                  <tt><i>119</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/category_form.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l120">
+                  <tt><i>120</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;category-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l122">
+                  <tt><i>122</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l123">
+                  <tt><i>123</i> 		<span class="k">return</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l126">
+                  <tt><i>126</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Category</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l127">
+                  <tt><i>127</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/category_confirm_delete.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l128">
+                  <tt><i>128</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;category-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l130">
+                  <tt><i>130</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l131">
+                  <tt><i>131</i> 		<span class="k">return</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l134">
+                  <tt><i>134</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l135">
+                  <tt><i>135</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/expense_list.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l136">
+                  <tt><i>136</i> 	<span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;expenses&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l137">
+                  <tt><i>137</i> 	<span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">10</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l139">
+                  <tt><i>139</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l140">
+                  <tt><i>140</i> 		<span class="n">qs</span> <span class="o">=</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l141">
+                  <tt><i>141</i> 		<span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l142">
+                  <tt><i>142</i> 		<span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l143">
+                  <tt><i>143</i> 		<span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l144">
+                  <tt><i>144</i> 		<span class="k">if</span> <span class="n">category</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l145">
+                  <tt><i>145</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category__id</span><span class="o">=</span><span class="n">category</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l146">
+                  <tt><i>146</i> 		<span class="k">if</span> <span class="n">start_date</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l147">
+                  <tt><i>147</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">date__gte</span><span class="o">=</span><span class="n">start_date</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l148">
+                  <tt><i>148</i> 		<span class="k">if</span> <span class="n">end_date</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l149">
+                  <tt><i>149</i> 			<span class="n">qs</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">date__lte</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l150">
+                  <tt><i>150</i> 		<span class="k">return</span> <span class="n">qs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l151">
+                  <tt><i>151</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l152">
+                  <tt><i>152</i> 	<span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l153">
+                  <tt><i>153</i> 		<span class="n">ctx</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l154">
+                  <tt><i>154</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l155">
+                  <tt><i>155</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l156">
+                  <tt><i>156</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_start_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_date&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l157">
+                  <tt><i>157</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;selected_end_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l158">
+                  <tt><i>158</i> 		<span class="k">return</span> <span class="n">ctx</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l161">
+                  <tt><i>161</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l162">
+                  <tt><i>162</i> 	<span class="n">form_class</span> <span class="o">=</span> <span class="n">ExpenseForm</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l163">
+                  <tt><i>163</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/expense_form.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l164">
+                  <tt><i>164</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;expense-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l166">
+                  <tt><i>166</i> 	<span class="k">def</span> <span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l167">
+                  <tt><i>167</i> 		<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l168">
+                  <tt><i>168</i> 		<span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l169">
+                  <tt><i>169</i> 		<span class="k">return</span> <span class="n">kwargs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l170">
+                  <tt><i>170</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l171">
+                  <tt><i>171</i> 	<span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l172">
+                  <tt><i>172</i> 		<span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l173">
+                  <tt><i>173</i> 		<span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l176">
+                  <tt><i>176</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l177">
+                  <tt><i>177</i> 	<span class="n">form_class</span> <span class="o">=</span> <span class="n">ExpenseForm</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l178">
+                  <tt><i>178</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/expense_form.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l179">
+                  <tt><i>179</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;expense-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l181">
+                  <tt><i>181</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l182">
+                  <tt><i>182</i> 		<span class="k">return</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l183">
+                  <tt><i>183</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l184">
+                  <tt><i>184</i> 	<span class="k">def</span> <span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l185">
+                  <tt><i>185</i> 		<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l186">
+                  <tt><i>186</i> 		<span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l187">
+                  <tt><i>187</i> 		<span class="k">return</span> <span class="n">kwargs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l190">
+                  <tt><i>190</i> 	<span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l191">
+                  <tt><i>191</i> 	<span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;tracker/expense_confirm_delete.html&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l192">
+                  <tt><i>192</i> 	<span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;expense-list&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l193">
+                  <tt><i>193</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l194">
+                  <tt><i>194</i> 	<span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l195">
+                  <tt><i>195</i> 		<span class="k">return</span> <span class="n">Expense</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  11
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="tracker.views.source.html#l18">
+                  <tt><i>18</i> <span class="k">def</span> <span class="nf">export_expenses_pdf</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l48">
+                  <tt><i>48</i> <span class="k">def</span> <span class="nf">export_expenses_csv</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l62">
+                  <tt><i>62</i> <span class="k">class</span> <span class="nc">DashboardView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l98">
+                  <tt><i>98</i> <span class="k">class</span> <span class="nc">CategoryListView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l106">
+                  <tt><i>106</i> <span class="k">class</span> <span class="nc">CategoryCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l116">
+                  <tt><i>116</i> <span class="k">class</span> <span class="nc">CategoryUpdateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l125">
+                  <tt><i>125</i> <span class="k">class</span> <span class="nc">CategoryDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l133">
+                  <tt><i>133</i> <span class="k">class</span> <span class="nc">ExpenseListView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l160">
+                  <tt><i>160</i> <span class="k">class</span> <span class="nc">ExpenseCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l175">
+                  <tt><i>175</i> <span class="k">class</span> <span class="nc">ExpenseUpdateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l189">
+                  <tt><i>189</i> <span class="k">class</span> <span class="nc">ExpenseDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="tracker.views.source.html#l83">
+                  <tt><i>83</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l97">
+                  <tt><i>97</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l151">
+                  <tt><i>151</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l170">
+                  <tt><i>170</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l183">
+                  <tt><i>183</i> 	</tt>
+               </a>
+            </li><li>
+               
+               <a href="tracker.views.source.html#l193">
+                  <tt><i>193</i> 	</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E501:</strong> line too long (101 > 79 characters)
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="tracker.views.source.html#l59">
+                  <tt><i>59</i> 		<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">exp</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">category</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="o">.</span><span class="n">description</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="tracker.views.source.html#l87">
+                  <tt><i>87</i> 		<span class="n">summary</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;category__name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-total&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="tracker.views.source.html#l92">
+                  <tt><i>92</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="tracker.views.source.html#l104">
+                  <tt><i>104</i> 		<span class="k">return</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="tracker.views.source.html#l154">
+                  <tt><i>154</i> 		<span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">|</span> <span class="n">models</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

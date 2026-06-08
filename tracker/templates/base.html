@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Bracane Expenses Reimbursement{% endblock %}</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script>
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.getItem("darkMode") === "true",
+      );
+    </script>
+
+    <style>
+      * {
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease;
+      }
+    </style>
+
+    {% block head %}{% endblock %}
+  </head>
+
+  <body
+    x-data="{ dark: localStorage.getItem('darkMode') === 'true', menuOpen: false }"
+    :class="dark ? 'dark bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'"
+    class="min-h-screen flex flex-col font-sans"
+  >
+    <nav class="bg-white dark:bg-gray-800 shadow-md fixed w-full z-30">
+      <div
+        class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a
+          href="/"
+          class="font-extrabold text-2xl text-blue-600 dark:text-blue-400 tracking-tight"
+        >
+          Bracane Expenses Reimbursement
+        </a>
+
+        <div
+          class="hidden md:flex items-center gap-6 text-gray-800 dark:text-gray-200"
+        >
+          {% if user.is_authenticated %}
+          <a
+            href="{% url 'dashboard' %}"
+            class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'expense-list' %}"
+            class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Expenses</a
+          >
+          <a
+            href="{% url 'category-list' %}"
+            class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Categories</a
+          >
+          <form method="POST" action="{% url 'logout' %}" class="inline">
+            {% csrf_token %}
+            <input
+              type="submit"
+              value="Logout"
+              class="cursor-pointer hover:text-red-600 dark:hover:text-red-400 transition"
+            />
+          </form>
+          {% else %}
+          <a
+            href="{% url 'login' %}"
+            class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Login</a
+          >
+          <a
+            href="{% url 'signup' %}"
+            class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Sign Up</a
+          >
+          {% endif %}
+
+          <button
+            @click="dark = !dark; localStorage.setItem('darkMode', dark); document.documentElement.classList.toggle('dark', dark)"
+            class="ml-2 px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+          >
+            <span x-text="dark ? '☀️' : '🌙'"></span>
+          </button>
+        </div>
+
+        <button
+          @click="menuOpen = !menuOpen"
+          class="md:hidden text-gray-800 dark:text-gray-200 focus:outline-none"
+        >
+          <svg
+            x-show="!menuOpen"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <svg
+            x-show="menuOpen"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        x-show="menuOpen"
+        x-transition
+        class="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-lg"
+      >
+        <div class="px-4 py-3 space-y-3 text-gray-800 dark:text-gray-200">
+          {% if user.is_authenticated %}
+          <a
+            href="{% url 'dashboard' %}"
+            class="block hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'expense-list' %}"
+            class="block hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Expenses</a
+          >
+          <a
+            href="{% url 'category-list' %}"
+            class="block hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Categories</a
+          >
+          <form
+            method="POST"
+            action="{% url 'logout' %}"
+            class="pt-2 border-t border-gray-300 dark:border-gray-700"
+          >
+            {% csrf_token %}
+            <input
+              type="submit"
+              value="Logout"
+              class="cursor-pointer w-full text-left py-1 hover:text-red-600 dark:hover:text-red-400 transition"
+            />
+          </form>
+          {% else %}
+          <a
+            href="{% url 'login' %}"
+            class="block hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Login</a
+          >
+          <a
+            href="{% url 'signup' %}"
+            class="block hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >Sign Up</a
+          >
+          {% endif %}
+
+          <button
+            @click="dark = !dark; localStorage.setItem('darkMode', dark); document.documentElement.classList.toggle('dark', dark)"
+            class="w-full text-left px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+          >
+            <span x-text="dark ? '☀️' : '🌙'"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pt-24 pb-10 flex-1 w-full">
+      {% if messages %}
+      <div class="mt-2 space-y-2">
+        {% for message in messages %}
+        <div
+          class="px-4 py-2 rounded shadow text-sm md:text-base {% if message.tags == 'success' %} bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 {% elif message.tags == 'error' %} bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 {% else %} bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 {% endif %}"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

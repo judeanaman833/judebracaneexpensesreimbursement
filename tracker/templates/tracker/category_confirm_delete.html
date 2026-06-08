@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-lg mx-auto mt-16 px-4 text-gray-900 dark:text-gray-100">
+
+  <div class="bg-white dark:bg-gray-800 px-6 py-4 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+      Delete Category
+    </h2>
+    <a href="{% url 'category-list' %}" 
+       class="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-lg font-medium transition">
+      Back to List
+    </a>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700 text-center">
+    <div class="flex justify-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-600 dark:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v4m0 4h.01M4.93 4.93a10 10 0 0114.14 0 10 10 0 010 14.14 10 10 0 01-14.14 0 10 10 0 010-14.14z" />
+      </svg>
+    </div>
+
+    <p class="text-lg mb-6 text-gray-800 dark:text-gray-200">
+      Are you sure you want to <span class="font-semibold text-red-600 dark:text-red-400">delete this category</span>?
+      <br>This action cannot be undone.
+    </p>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      <button type="submit" 
+              class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition">
+        Yes, Delete
+      </button>
+      <a href="{% url 'category-list' %}" 
+         class="block w-full py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-lg font-medium transition">
+        Cancel
+      </a>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

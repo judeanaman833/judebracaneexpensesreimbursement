@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-10 px-4 text-gray-900 dark:text-gray-100 space-y-8">
+
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-6 bg-white dark:bg-gray-800 px-6 py-5 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+      My Categories
+    </h2>
+    <a href="{% url 'category-add' %}" 
+       class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition">
+      + Add Category
+    </a>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700 overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+      <thead class="bg-gray-100 dark:bg-gray-700">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Name</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        {% for category in categories %}
+          <tr class="hover:bg-gray-50 dark:hover:bg-gray-900 transition">
+            <td class="px-6 py-4 text-gray-900 dark:text-gray-100 font-medium">{{ category.name }}</td>
+            <td class="px-6 py-4 flex items-center gap-3">
+              <a href="{% url 'category-edit' category.pk %}" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Edit</a>
+              <span class="text-gray-400">|</span>
+              <a href="{% url 'category-delete' category.pk %}" class="text-red-600 dark:text-red-400 hover:underline font-medium">Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="2" class="text-center py-6 text-gray-600 dark:text-gray-400">
+              No categories yet. Add your first one!
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

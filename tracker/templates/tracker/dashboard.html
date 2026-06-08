@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% load chart_extras %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto mt-10 px-4 text-gray-900 dark:text-gray-100 space-y-8">
+
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700 space-y-6">
+    
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Dashboard - {{ month }}
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="{% url 'expense-list' %}" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition">
+          View All
+        </a>
+        <a href="{% url 'export-expenses-csv' %}" class="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium transition">
+          Export CSV
+        </a>
+        <a href="{% url 'export-expenses-pdf' %}" class="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition">
+          Export PDF
+        </a>
+      </div>
+    </div>
+
+    <form method="get" class="sm:flex sm:flex-wrap sm:gap-6 sm:items-end space-y-4 sm:space-y-0">
+      <div>
+        <label for="category" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">Category</label>
+        <select name="category" id="category"
+          class="w-48 border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <option value="">All</option>
+          {% for cat in categories %}
+            <option value="{{ cat.id }}" {% if cat.id|stringformat:'s' == selected_category %}selected{% endif %}>{{ cat.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label for="start_date" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">Start Date</label>
+        <input type="date" name="start_date" id="start_date" value="{{ selected_start_date }}"
+          class="border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      </div>
+
+      <div>
+        <label for="end_date" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">End Date</label>
+        <input type="date" name="end_date" id="end_date" value="{{ selected_end_date }}"
+          class="border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      </div>
+
+      <div class="flex gap-3 mt-4 sm:mt-0">
+        <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition">
+          Filter
+        </button>
+        {% if selected_category or selected_start_date or selected_end_date %}
+          <a href="{% url 'dashboard' %}" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-100 rounded-lg font-medium transition">
+            Clear
+          </a>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+
+  <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md ring-1 ring-gray-200 dark:ring-gray-700">
+    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Monthly Summary</h3>
+    <p class="mb-6 text-gray-800 dark:text-gray-200">
+      Total Spent:
+      <span class="font-bold text-blue-600 dark:text-blue-400 text-lg">${{ overall_total }}</span>
+    </p>
+
+    <div class="overflow-x-auto mb-8">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow">
+        <thead class="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Category</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Total</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          {% for row in summary %}
+            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+              <td class="px-6 py-4 text-gray-900 dark:text-gray-100 whitespace-nowrap">{{ row.category__name }}</td>
+              <td class="px-6 py-4 text-gray-900 dark:text-gray-100 whitespace-nowrap">${{ row.total }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="2" class="text-center py-6 text-gray-600 dark:text-gray-400">
+                No expenses this month.
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <canvas id="expenseChart" height="120"></canvas>
+      {% with labels=summary|json_labels data=summary|json_data %}
+        <script id="chartLabels" type="application/json">{{ labels|safe }}</script>
+        <script id="chartData" type="application/json">{{ data|safe }}</script>
+      {% endwith %}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="{% static 'js/dashboard.js' %}"></script>
+    </div>
+  </div>
+</div>
+{% endblock %}
