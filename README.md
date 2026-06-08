@@ -24,7 +24,7 @@ A modern, secure Django web application for tracking personal expenses, managing
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/PeterOlayemi/django_expense_tracker.git
+git clone https://github.com/judeanaman833/judebracaneexpensesreimbursement.git
 cd django_expense_tracker
 ```
 
